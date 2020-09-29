@@ -84,6 +84,9 @@ public class CombinationGenerator {
         for(Row row:sheet) {     //iteration over row using for each loop
             Cell cell0 = row.getCell(0);
             Cell cell1 =  row.getCell(1);
+            if (cell1 == null) {
+                break;
+            }
             Cell cell2 = row.getCell(2);
             Cell cell3 = row.getCell(3);
             Cell cell4 = row.getCell(4);
