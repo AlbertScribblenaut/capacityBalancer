@@ -1,4 +1,10 @@
-/**
+/** An algorithm that determines the best usable combinations of different
+ * cathode and anode samples based on their theoretical capacities.
+ *  makes use of a heap based minimum priority queue. Based
+ *  on code that was written during summer 2020 while taking CS61BL at the
+ *  University of California, Berkeley. I made use of the libraries that were
+ *  provided by course staff (but did not upload to GitHub) as well as apache
+ *  .jar files to help with reading .xlsx and .xls files.
  * @author Albert Wen
  */
 
@@ -55,6 +61,9 @@ public class CombinationGenerator {
         }
     }
 
+    /* I will be working on how to run the main method in a terminal instead of
+    just IntelliJ.
+     */
     public static void main(String[] args) throws IOException {
         /*if (args.length != 1) {
             System.out.println("Please input one file name");
