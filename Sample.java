@@ -1,3 +1,8 @@
+/** Object related to a sample that is either an anode or cathode of a battery.
+ * @author Albert Wen
+ *
+ */
+
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -40,7 +45,8 @@ public class Sample {
 
     /** Returns the SHA-1 hash of the concatenation of VALS, which may
      *  be any mixture of byte arrays and Strings.
-     *  @author P. N. Hilfinger*/
+     *  @author P. N. Hilfinger
+     *  */
     static String sha1(Object... vals) {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-1");
