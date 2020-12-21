@@ -32,7 +32,7 @@ public class Combination implements Comparable<Combination> {
 
     public float findRatio(Sample an, Sample cath) {
         float cathCap = (float) (cath.mass * 0.88 * 148 / 1000);
-        float anCap = (float) (an.mass * 0.902 * 372 / 1000);
+        float anCap = (float) (an.mass * 0.9022 * 372 / 1000);
         return anCap / cathCap;
     }
 
