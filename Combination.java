@@ -24,20 +24,29 @@ public class Combination implements Comparable<Combination> {
         }
 
         // creating combinations
+        double idealRatio = 1.08;
         this.an = an;
         this.cath = cath;
         this.ratio = findRatio(an, cath);
-        this.deviation = abs(1.08 - findRatio(an,cath));
+        double positiveDeviation = this.ratio - idealRatio;
+        if (positiveDeviation >= 0) {
+            this.deviation = positiveDeviation;
+        } else {
+            this.deviation = idealRatio;
+        }
     }
 
     public float findRatio(Sample an, Sample cath) {
-        float cathCap = (float) (cath.mass * 0.88 * 148 / 1000);
+        float cathCap = (float) (cath.mass * 0.88 * 145 / 1000);
         float anCap = (float) (an.mass * 0.9022 * 372 / 1000);
         return anCap / cathCap;
     }
 
     public void giveData() {
         System.out.println("Giving combination: ");
+        System.out.println("Anode: " + an.label + " (" + an.date + "), " +
+                "Cathode" +
+                ": " + cath.label + " (" + cath.date +")");
         System.out.println("Ratio of this combination: " + ratio);
         an.giveData();
         cath.giveData();
