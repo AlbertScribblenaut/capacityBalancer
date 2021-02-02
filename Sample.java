@@ -29,15 +29,15 @@ public class Sample {
             this.capacity = (float) ((float) mass * 0.902 * 372 / 1000);
         }
         if (electrodeType.equals("Cathode")) {
-            this.capacity = (float) ((float) mass * 0.88 * 148 / 1000);
+            this.capacity = (float) ((float) mass * 0.88 * 145 / 1000);
         }
         this.id = sha1(date + label + mass);
     }
     public void giveData() {
-        System.out.println("    Sample Date: " + date);
+        System.out.println("    Electrode Type: " + electrodeType);
+        System.out.println("    Set Origin: " + date);
         System.out.println("    Label: " + label);
         System.out.println("    Electrode Size: " + sideLength + " mm x " + sideLength + " mm");
-        System.out.println("    Electrode Type: " + electrodeType);
         System.out.println("    Electrode Mass (mg): " + mass);
         System.out.println("    Theoretical capacity: " + capacity);
         System.out.println();
