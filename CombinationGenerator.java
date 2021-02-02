@@ -90,13 +90,18 @@ public class CombinationGenerator {
             Cell cell2 = row.getCell(2);
             Cell cell3 = row.getCell(3);
             Cell cell4 = row.getCell(4);
-            String date =
+
+            // note that batchName could be either a set number or its
+            // creation date
+            String batchName =
                     String.valueOf(cell0.getDateCellValue());
+//            String batchName = cell0.getStringCellValue();
             String label = cell1.getStringCellValue();
             double sideLength= cell2.getNumericCellValue();
             String electrodeType = cell3.getStringCellValue();
             double mass = cell4.getNumericCellValue();
-            Sample s = new Sample(date, label, sideLength, electrodeType, mass);
+            Sample s = new Sample(batchName, label, sideLength, electrodeType,
+                    mass);
 
             usedSamples.put(s.id, false);
             idToSample.put(s.id, s);
