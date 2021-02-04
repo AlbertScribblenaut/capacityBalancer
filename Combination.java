@@ -8,6 +8,8 @@ public class Combination implements Comparable<Combination> {
     public Sample cath;
     public float ratio;
     public double deviation;
+    public double positiveDeviation = 1.08;
+    public double idealRatio = 1.08;
 
     public Combination(Sample an, Sample cath) {
         // error checking
@@ -24,15 +26,14 @@ public class Combination implements Comparable<Combination> {
         }
 
         // creating combinations
-        double idealRatio = 1.08;
+        double idealRatio = 1.08;  // serves as a nice lower bound, helps
+        // when working with MinPQ
         this.an = an;
         this.cath = cath;
         this.ratio = findRatio(an, cath);
-        double positiveDeviation = this.ratio - idealRatio;
-        if (positiveDeviation >= 0) {
-            this.deviation = positiveDeviation;
-        } else {
-            this.deviation = idealRatio;
+        this.deviation = this.ratio - idealRatio;
+        if (this.deviation >= 0) {
+            this.positiveDeviation = this.deviation;
         }
     }
 
@@ -48,6 +49,11 @@ public class Combination implements Comparable<Combination> {
                 "Cathode" +
                 ": " + cath.label + " (" + cath.date +")");
         System.out.println("Ratio of this combination: " + ratio);
+        System.out.println("Deviation: " + deviation);
+        if (this.deviation < 0) {
+            System.out.println("Caution - negative deviation below lower " +
+                    "bound of ideal ratio: " + idealRatio);
+        }
         an.giveData();
         cath.giveData();
         System.out.println();
