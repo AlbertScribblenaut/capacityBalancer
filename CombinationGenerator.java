@@ -45,7 +45,7 @@ public class CombinationGenerator {
         for (Sample an : anodes) {
             for (Sample cath : cathodes) {
                 Combination combo = new Combination(an, cath);
-                pq.insert(combo, combo.deviation);
+                pq.insert(combo, combo.positiveDeviation);
             }
         }
 
@@ -56,6 +56,9 @@ public class CombinationGenerator {
             if (usedSamples.get(anId) || usedSamples.get(cathId)) {
                 continue;
             }
+            if (combo.deviation < 0) {
+                continue;
+            } // filters out any that have combos less than idealRatio
             combo.giveData();
             usedSamples.put(anId, true);
             usedSamples.put(cathId, true);
@@ -72,7 +75,7 @@ public class CombinationGenerator {
         /** @source https://www.javatpoint.com/how-to-read-excel-file-in-java
          *
          */
-        String fileName = "testSheet.xlsx";
+        String fileName = "remainingSamples.xlsx";
         //obtaining input bytes from a file
         FileInputStream fis = new FileInputStream(new File(fileName));
         //creating workbook instance that refers to .xls file
@@ -94,9 +97,9 @@ public class CombinationGenerator {
 
             // note that batchName could be either a set number or its
             // creation date
-            String batchName =
-                    String.valueOf(cell0.getDateCellValue());
-//            String batchName = cell0.getStringCellValue();
+//            String batchName =
+//                    String.valueOf(cell0.getDateCellValue());
+            String batchName = cell0.getStringCellValue();
             String label = cell1.getStringCellValue();
             double sideLength= cell2.getNumericCellValue();
             String electrodeType = cell3.getStringCellValue();
