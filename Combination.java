@@ -8,8 +8,8 @@ public class Combination implements Comparable<Combination> {
     public Sample cath;
     public float ratio;
     public double deviation;
-    public double positiveDeviation = 1.08;
-    public double idealRatio = 1.08;
+    public double idealRatio = 1.08;  // serves as our lower bound
+    public double positiveDeviation = 1.08;  // functions as priority value
 
     public Combination(Sample an, Sample cath) {
         // error checking
@@ -26,8 +26,6 @@ public class Combination implements Comparable<Combination> {
         }
 
         // creating combinations
-        double idealRatio = 1.08;  // serves as a nice lower bound, helps
-        // when working with MinPQ
         this.an = an;
         this.cath = cath;
         this.ratio = findRatio(an, cath);
@@ -38,8 +36,8 @@ public class Combination implements Comparable<Combination> {
     }
 
     public float findRatio(Sample an, Sample cath) {
-        float cathCap = (float) (cath.mass * 0.88 * 145 / 1000);
-        float anCap = (float) (an.mass * 0.9022 * 372 / 1000);
+        float cathCap = (float) (cath.mass * 0.88 * 145 / 1000);  // [mAh]
+        float anCap = (float) (an.mass * 0.9022 * 372 / 1000);  // [mAh]
         return anCap / cathCap;
     }
 
