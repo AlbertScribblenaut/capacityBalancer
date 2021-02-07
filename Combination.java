@@ -35,6 +35,7 @@ public class Combination implements Comparable<Combination> {
         }
     }
 
+    // finds N/P ratio for a combination
     public float findRatio(Sample an, Sample cath) {
         float cathCap = (float) (cath.mass * 0.88 * 145 / 1000);  // [mAh]
         float anCap = (float) (an.mass * 0.9022 * 372 / 1000);  // [mAh]
