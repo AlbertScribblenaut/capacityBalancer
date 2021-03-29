@@ -42,20 +42,24 @@ public class Combination implements Comparable<Combination> {
         return anCap / cathCap;
     }
 
-    public void giveData() {
-        System.out.println("Giving combination: ");
-        System.out.println("Anode: " + an.label + " (" + an.date + "), " +
-                "Cathode" +
-                ": " + cath.label + " (" + cath.date +")");
-        System.out.println("Ratio of this combination: " + ratio);
-        System.out.println("Deviation: " + deviation);
-        if (this.deviation < 0) {
-            System.out.println("Caution - negative deviation below lower " +
-                    "bound of ideal ratio: " + idealRatio);
+    public void giveData(boolean simpleRead) {
+        if (simpleRead) {
+        System.out.println(an.label + " (" + an.date + "), " + cath.label + " (" + cath.date + "), - " + ratio);
+        } else {
+            System.out.println("Giving combination: ");
+            System.out.println("Anode: " + an.label + " (" + an.date + "), " +
+                    "Cathode" +
+                    ": " + cath.label + " (" + cath.date + ")");
+            System.out.println("Ratio of this combination: " + ratio);
+            System.out.println("Deviation: " + deviation);
+            if (this.deviation < 0) {
+                System.out.println("Caution - negative deviation below lower " +
+                        "bound of ideal ratio: " + idealRatio);
+            }
+            an.giveData();
+            cath.giveData();
+            System.out.println();
         }
-        an.giveData();
-        cath.giveData();
-        System.out.println();
     }
 
     public int compareTo(Combination other) {

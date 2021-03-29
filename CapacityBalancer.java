@@ -26,10 +26,11 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-public class CombinationGenerator {
+class CombinationGenerator {
 
     public static void makeCombinations(HashMap<String, Sample> idToSample,
-                                        HashMap<String, Boolean> usedSamples) {
+                                        HashMap<String, Boolean> usedSamples,
+                                        boolean simpleRead) {
         Set<Sample> anodes = new HashSet<>();
         Set<Sample> cathodes = new HashSet<>();
         MinHeapPQ<Combination> pq = new MinHeapPQ<>();
@@ -59,7 +60,7 @@ public class CombinationGenerator {
             if (combo.deviation < 0) {
                 continue;
             } // filters out any that have combos less than idealRatio
-            combo.giveData();
+            combo.giveData(simpleRead);
             usedSamples.put(anId, true);
             usedSamples.put(cathId, true);
         }
@@ -75,7 +76,9 @@ public class CombinationGenerator {
         /** @source https://www.javatpoint.com/how-to-read-excel-file-in-java
          *
          */
-        String fileName = "remainingSamples.xlsx";
+        String fileName = "3.28.21.xlsx";
+        boolean simpleRead = true;
+
         //obtaining input bytes from a file
         FileInputStream fis = new FileInputStream(new File(fileName));
         //creating workbook instance that refers to .xls file
@@ -97,9 +100,9 @@ public class CombinationGenerator {
 
             // note that batchName could be either a set number or its
             // creation date
-//            String batchName =
-//                    String.valueOf(cell0.getDateCellValue());
-            String batchName = cell0.getStringCellValue();
+            String batchName =
+                    String.valueOf(cell0.getDateCellValue());
+//            String batchName = cell0.getStringCellValue();
             String label = cell1.getStringCellValue();
             double sideLength= cell2.getNumericCellValue();
             String electrodeType = cell3.getStringCellValue();
@@ -111,7 +114,7 @@ public class CombinationGenerator {
             idToSample.put(s.id, s);
         }
 
-        makeCombinations(idToSample, usedSamples);
+        makeCombinations(idToSample, usedSamples, simpleRead);
     }
 }
 
