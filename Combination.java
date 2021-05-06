@@ -63,7 +63,6 @@ public class Combination implements Comparable<Combination> {
     }
 
     public int compareTo(Combination other) {
-        double idealRatio = 1.08;
         double cmp = abs(idealRatio - this.ratio);
         return cmp == 0 ? 1 : (int) cmp;
     }
