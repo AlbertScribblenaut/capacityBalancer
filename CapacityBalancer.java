@@ -26,7 +26,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-class CombinationGenerator {
+class CapacityBalancer {
 
     public static void makeCombinations(HashMap<String, Sample> idToSample,
                                         HashMap<String, Boolean> usedSamples,
@@ -76,7 +76,7 @@ class CombinationGenerator {
         /** @source https://www.javatpoint.com/how-to-read-excel-file-in-java
          *
          */
-        String fileName = "3.28.21.xlsx";
+        String fileName = "testSheet.xlsx"; // your file here
         boolean simpleRead = true;
 
         //obtaining input bytes from a file
