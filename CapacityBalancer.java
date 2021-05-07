@@ -66,9 +66,6 @@ class CapacityBalancer {
         }
     }
 
-    /* I will be working on how to run the main method in a terminal instead of
-    just IntelliJ.
-     */
     public static void main(String[] args) throws IOException {
         /*if (args.length != 1) {
             System.out.println("Please input one file name");
